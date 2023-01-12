@@ -123,6 +123,7 @@ namespace Betazon_Milano.Controllers
             customer.NameStyle = false;
             customer.Rowguid = Guid.NewGuid();
             customer.ModifiedDate = customer1.ModifiedDate;
+            customer.Suffix = customer1.Admin;
             string salt = Convert.ToBase64String(RandomNumberGenerator.GetBytes(5));
             string HashPasword(string password, string salt)
             {
@@ -134,10 +135,15 @@ namespace Betazon_Milano.Controllers
 
             customer.PasswordHash = HashPasword(customer1.Password, salt);
 
-            _context.Customers.Add(customer);
-            await _context.SaveChangesAsync();
+            if (customer1.OperatorCode == 1111)
+            {
+                _context.Customers.Add(customer);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCustomerID", new { id = customer.CustomerId }, customer);
+                return CreatedAtAction("GetCustomerID", new { id = customer.CustomerId }, customer);
+            }
+
+            return NotFound();
         }
 
         // DELETE: api/Customers/5

@@ -1,4 +1,6 @@
-﻿namespace Betazon_Milano.Models
+﻿using Microsoft.Build.Framework;
+
+namespace Betazon_Milano.Models
 {
     public class CustomerPass
     {
@@ -9,5 +11,7 @@
         public string Phone { get; set; }
         public string Password { get; set; }
         public DateTime ModifiedDate { get; set; }
+        public string Admin { get; set; }
+        public int OperatorCode { get; set; }
     }
 }

@@ -73,7 +73,7 @@ namespace AutoAPI.autenticator
                     {
                         while (reader.Read())
                         {
-                            if (VerifyPassword(authPassword, reader["PasswordHash"].ToString(), reader["PasswordSalt"].ToString()) && authUser == reader["EmailAddress"].ToString())
+                            if (VerifyPassword(authPassword, reader["PasswordHash"].ToString(), reader["PasswordSalt"].ToString()) && authUser == reader["EmailAddress"].ToString() && reader["Suffix"].ToString() == "SI")
                             {
                                 verifica = true;
                             }
